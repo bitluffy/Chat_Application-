@@ -21,13 +21,13 @@ void SendMsg(SOCKET s) {
 
     while (true) {
         getline(cin, message);
-        string msg = name + ": " + message; // Added space after colon for readability
+        string msg = name + ": " + message;  
         int bytesSent = send(s, msg.c_str(), msg.length(), 0);
         if (bytesSent == SOCKET_ERROR) {
             cout << "Unable to send message.\n";
             break;
         }
-        if (message == "quit") { // Changed condition to check 'message' instead of 'msg'
+        if (message == "quit") { 
             cout << "Exiting the program.\n";
             break;
         }
@@ -41,13 +41,13 @@ void ReceiveMessage(SOCKET s) {
     int recvLength;
 
     while (true) {
-        recvLength = recv(s, buffer, sizeof(buffer), 0); // Ensure space for null terminator
+        recvLength = recv(s, buffer, sizeof(buffer), 0); 
         if (recvLength <= 0) {
             cout << "Error receiving message.\n";
             break;
         }
-        buffer[recvLength] = '\0'; // Null-terminate the received data
-        cout << buffer << endl; // Print the received message
+        buffer[recvLength] = '\0'; 
+        cout << buffer << endl;  
     }
     closesocket(s);
     WSACleanup();
@@ -97,5 +97,5 @@ int main() {
     senderThread.join(); // Ensure the main thread waits for sender to finish
     receiverThread.join(); // Ensure the main thread waits for receiver to finish
 
-    return 0; // Main function ends here
+    return 0;  
 }
