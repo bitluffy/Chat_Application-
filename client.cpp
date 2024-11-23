@@ -79,7 +79,7 @@ int main() {
         return 1;
     }
 
-    // Attempt to connect to the server
+   
     if (connect(s, reinterpret_cast<sockaddr*>(&serveraddr), sizeof(serveraddr)) == SOCKET_ERROR) {
         cout << "Error connecting to server.\n";
         closesocket(s); 
@@ -93,9 +93,9 @@ int main() {
     thread senderThread(SendMsg, s);
     thread receiverThread(ReceiveMessage, s);
 
-    // Wait for both threads to finish
-    senderThread.join(); // Ensure the main thread waits for sender to finish
-    receiverThread.join(); // Ensure the main thread waits for receiver to finish
+   
+    senderThread.join();  
+    receiverThread.join();  
 
     return 0;  
 }
